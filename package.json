@@ -1,0 +1,17 @@
+{
+  "name": "run-eslea-bot",
+  "version": "0.0.5",
+  "description": "A bot for deresute which \u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[DDiscord bot for deresute which uses aidoru.info token event lator and posts results ",
+  "main": "server.js",
+  "scripts": {
+    "run": "node src/server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^11.5.1",
+    "express": "^4.17.1",
+    "fs": "0.0.1-security",
+    "selenium-webdriver": "^4.0.0-alpha.4"
+  }
+}
