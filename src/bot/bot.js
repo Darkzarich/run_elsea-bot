@@ -1,30 +1,40 @@
-const grabber = require('../services/grabber.js')
-const parser = require('./parser.js')
-
 const Discord = require('discord.js');
 const client = new Discord.Client();
+const commands = require('./commands')
 const token = JSON.parse(JSON.stringify(require('./token.json')));
 
-client.on('message', msg => {
-  if (msg.content === 'ping') {
-  	msg.channel.send("Loading...").then( msgLoading => {
-	    grabber.initDriver().then( driver => {
-	    	grabber.grab(driver, parser.DEFAULT_COMMAND).then( ldata => {
-	    		driver.close();
-	    		const attachment = new Discord.Attachment(new Buffer(ldata, 'base64'));
-	    		let embed = new Discord.RichEmbed({attachments: attachment})
-	    			.setColor('#0099ff')
-	    			.setTitle('Some title')
+client.on('ready', () => {
+	console.log("The bot is serving...")
+})
 
-	    		msgLoading.edit("", embed)
-	    	}).catch( e => {
-	    		console.log('Grab: ' + e)
-	    	})
-	    }).catch( e => {
-	    	console.log('Init driver: ' + e)
-	    })
-	})
-  }
+client.on('message', msg => {
+	try {
+		if(msg.author.bot || !msg.isMentioned(client.user)) return;
+
+		const command = msg.content.trim().replace(Discord.MessageMentions.USERS_PATTERN, "")
+		                .trim().split(" ")[0].toLowerCase()
+		const args = msg.content.split(" ").slice[1]
+
+		console.log("command: ", command)
+		console.log("args: ", args)
+		console.log("msg: ", msg.content)
+		console.log("replace", msg.content.replace(Discord.MessageMentions.USERS_PATTERN, ""))
+
+		if (!command) {
+			msg.reply("Hi")
+			return;
+		}
+
+		const func = commands.find( func => func.meta.command.includes(command) || 
+					           func.meta.alias.includes(command)) 
+		if (func) {
+			func.fn(msg, args)
+		} else {
+			msg.reply("You typed an invalid command")
+		}
+	} catch (e) {
+		console.log("Critical Error: ", e)
+	}
 })
 
 client.login(token.TOKEN)

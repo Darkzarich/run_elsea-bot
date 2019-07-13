@@ -60,20 +60,45 @@ const grab = (driver, command) => {
 	            let submitButton = driver.findElement(By.xpath("//input[@type='submit']"))
 	            driver.executeScript(scripts.getScriptScrollCenter(), submitButton);
 	            driver.sleep(50);
-	            submitButton.click();
-	            driver.sleep(100);
-	            let summary = driver.findElement(By.className( 'col-md-4' ))
-	            driver.executeScript(scripts.getScriptScrollStart(), summary);
-	            driver.sleep(1000).then( () => {
+	            submitButton.click().then( () => {
+		            driver.sleep(100);
+		            let summary = driver.findElement(By.className( 'col-md-4' )).catch(e => {
+	            	driver.switchTo().alert().accept()
+	            	reject({ error: 'No event is going at the present time, don\'t use "curevent"' })	
+	            });
+		            driver.executeScript(scripts.getScriptScrollStart(), summary).catch(e => {
+	            	driver.switchTo().alert().accept()
+	            	reject({ error: 'No event is going at the present time, don\'t use "curevent"' })	
+	            });;
+		            driver.sleep(1000).then( () => {
 
-	            driver.findElement(By.className( 'table' )).takeScreenshot().then(function(data) {
-	              resolve(data)
+		            driver.findElement(By.className( 'table' )).takeScreenshot().then(function(data) {
+		              resolve(data)
+		            }).catch(e => {
+	            	driver.switchTo().alert().accept()
+	            	reject({ error: 'No event is going at the present time, don\'t use "curevent"' })	
+	            });;
+
+		            }).catch(e => {
+	            	driver.switchTo().alert().accept()
+	            	reject({ error: 'No event is going at the present time, don\'t use "curevent"' })	
+	            });
+	            }).catch(e => {
+	            	driver.switchTo().alert().accept()
+	            	reject({ error: 'No event is going at the present time, don\'t use "curevent"' })	
 	            });
 
-	            })
-
-	        })
+	        }).catch(e => {
+	            	driver.switchTo().alert().accept()
+	            	reject({ error: 'No event is going at the present time, don\'t use "curevent"' })	
+	            });
 	    } catch (e) {
+
+	    	if (e instanceof UnexpectedAlertOpenError) {
+	    		driver.switchTo().alert().accept()
+	            reject({ error: 'No event is going at the present time, don\'t use "curevent"' })	
+	    	}
+
 	    	console.error(e)
 	    	reject(e)
 	    }

@@ -4,7 +4,7 @@
   "description": "A bot for deresute which \u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[DDiscord bot for deresute which uses aidoru.info token event lator and posts results ",
   "main": "server.js",
   "scripts": {
-    "run": "node src/server.js"
+    "start": "node src/server.js"
   },
   "author": "",
   "license": "ISC",

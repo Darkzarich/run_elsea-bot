@@ -6,7 +6,7 @@ const bot = require('./bot/bot.js')
 
 const port = process.env.PORT || 14000;
 
-app.get('/test', function (req, res) {
+app.get('/statistic', function (req, res) {
     res.status(200)
 });
 
