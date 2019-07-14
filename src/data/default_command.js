@@ -1,7 +1,7 @@
 module.exports = {
-    hrs: false, // hours left (XX.X)
+    hrs: true, // hours left (XX.X)
     date: false, // end date (YYYY-MM-DD)
-    auto: true, // current event
+    auto: false, // current event
     timeField: 34.4, // 
 
     pts: true, // calculate wanted pts
