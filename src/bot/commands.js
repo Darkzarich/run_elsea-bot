@@ -38,6 +38,7 @@ const tokenGetCalculation = {
 		    		msgLoading.delete();
 		    		msg.reply('Your results:', {file: Buffer.from(ldata, 'base64')})
 		    	}).catch( e => {
+		    		driver.quit();
 		    		if (e.error) {
 		    			let embed = new Discord.RichEmbed()
 		    				.setColor(embedBorderErrorColor)
