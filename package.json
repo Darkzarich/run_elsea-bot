@@ -13,5 +13,8 @@
     "express": "^4.17.1",
     "fs": "0.0.1-security",
     "selenium-webdriver": "^4.0.0-alpha.4"
+  },
+  "engines": {
+    "node": "10.x"
   }
 }
