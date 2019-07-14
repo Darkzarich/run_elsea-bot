@@ -103,7 +103,6 @@ const grab = (driver, command) => {
 	            			reject(errorLogWrapper(e))
 	            		})
 	            	});	
-	            });
 	            }).catch(e => {
 	            	driver.switchTo().alert().accept()
 	            	reject(errorLogWrapper(e))	
