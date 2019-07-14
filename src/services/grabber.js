@@ -37,7 +37,6 @@ function errorLogWrapper(e, debug=true) {
 const grab = (driver, command) => {
 	return new Promise( (resolve, reject) => {
 	    try {
-	    	console.log(command)
 	        Object.keys(command).forEach( el => {
 	            driver.findElement(By.id(el)).then(field => {
 	                if (command[el] == true) {
