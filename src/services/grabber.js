@@ -92,7 +92,7 @@ const grab = (driver, command) => {
 		            	}).catch(e => {
 		            		driver.sleep(100)
 		            		driver.executeScript(scripts.getScriptScrollStart(), summary)
-		            		driver.wait(until.elementLocated(By.className('col-md-4')), 3000).then( el => {
+		            		driver.wait(until.elementLocated(By.className('table')), 3000).then( el => {
 					            el.takeScreenshot().then(function(data) {
 					              resolve(data)
 					            }).catch(e => {

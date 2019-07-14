@@ -29,7 +29,7 @@ const tokenGetCalculation = {
 	  	msg.channel.send("Loading...").then( msgLoading => {
 		    grabber.initDriver().then( driver => {
 		    	grabber.grab(driver, mutableDefualCommands).then( ldata => {
-		    		driver.close();
+		    		//driver.close();
 		    		// let embed = new Discord.RichEmbed()
 		    		// 	.setColor(embedBorderColor)
 		    		// 	.setTitle('Your results: ')
