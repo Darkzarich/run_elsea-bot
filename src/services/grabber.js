@@ -13,7 +13,7 @@ const initDriver = () => {
 	const driver = new webdriver.Builder()
 	    .forBrowser('chrome')
 	    .setChromeOptions(new chrome.Options().addArguments(
-	    "--window-size=1920,1080 --disable-extensions --proxy-server='direct:// --proxy-bypass-list=* --start-maximized --headless --disable-gpu --disable-dev-shm-usage --no-sandbox --ignore-certificate-errors"))
+	    "--window-size=1920,1080 --disable-extensions --proxy-server='direct:// --proxy-bypass-list=* --headless --disable-gpu --disable-dev-shm-usage --no-sandbox --ignore-certificate-errors"))
 
 	    .build();
 	driver.get('https://aidoru.info/token');
