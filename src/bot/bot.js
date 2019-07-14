@@ -1,7 +1,8 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const commands = require('./commands')
-const token = JSON.parse(JSON.stringify(require('./token.json')));
+//const token = JSON.parse(JSON.stringify(require('./token.json')));
+const token = process.env.TOKEN;
 
 client.on('ready', () => {
 	console.log("The bot is serving...")
