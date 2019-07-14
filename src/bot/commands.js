@@ -46,7 +46,8 @@ const tokenGetCalculation = {
 		    			if (e.file) {
 		    				embed.attachFile(Buffer.from(e.file, 'base64'))
 		    			}
-		    			msgLoading.edit("", embed)
+		    			msgLoading.delete();
+		    			msg.channel.send(embed)
 		    		} else {
 		    			msgLoading.edit('Grab: ' + e)
 		    		}
