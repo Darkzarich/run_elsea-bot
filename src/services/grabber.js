@@ -1,6 +1,7 @@
 const webdriver = require('selenium-webdriver');
 const chrome = require('selenium-webdriver/chrome');
 const scripts = require('./scripts.js');
+const until = require('selenium-webdriver/lib/until')
 const By = webdriver.By;
 
 const initDriver = () => {
@@ -78,14 +79,16 @@ const grab = (driver, command) => {
 	            	driver.switchTo().alert().accept()
 	            	reject(errorLogWrapper(e))	
 	            });;
-		            driver.sleep(1000).then( () => {
+		            driver.sleep(200).then( () => {
 
-		            driver.findElement(By.className( 'table' )).takeScreenshot().then(function(data) {
-		              resolve(data)
-		            }).catch(e => {
-	            	driver.switchTo().alert().accept()
-	            	reject(errorLogWrapper(e))	
-	            });;
+		            	driver.wait(until.elementLocated(By.className('table')), 3000).then( el => {
+				            el.takeScreenshot().then(function(data) {
+				              resolve(data)
+				            }).catch(e => {
+			            	driver.switchTo().alert().accept()
+			            	reject(errorLogWrapper(e))	
+			            	});;
+		            	});
 
 		            }).catch(e => {
 	            	driver.switchTo().alert().accept()
