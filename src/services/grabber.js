@@ -5,10 +5,6 @@ const until = require('selenium-webdriver/lib/until')
 const By = webdriver.By;
 
 const initDriver = () => {
-	const screen = {
-		width: 1024,
-		height: 768
-	};
 
 	const driver = new webdriver.Builder()
 	    .forBrowser('chrome')
@@ -37,6 +33,7 @@ function errorLogWrapper(e, debug=true) {
 const grab = (driver, command) => {
 	return new Promise( (resolve, reject) => {
 	    try {
+	    	driver.wait(300)
 	        Object.keys(command).forEach( el => {
 	            driver.findElement(By.id(el)).then(field => {
 	                if (command[el] == true) {
