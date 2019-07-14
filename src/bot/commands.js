@@ -3,6 +3,7 @@ const CALC_DEFAULT_COMMANDS = require('../data/default_command.js')
 const Discord = require('discord.js');
 
 const embedBorderColor = '#63bbab'
+const embedBorderErrorColor = '#FF0000'
 
 const ping = {
 	meta: {
@@ -34,14 +35,17 @@ const tokenGetCalculation = {
 		    		// 	.setColor(embedBorderColor)
 		    		// 	.setTitle('Your results: ')
 		    		// 	.attachFile(Buffer.from(ldata, 'base64'))
-
+		    		msgLoading.delete();
 		    		msg.reply('Your results:', {file: Buffer.from(ldata, 'base64')})
 		    	}).catch( e => {
 		    		if (e.error) {
 		    			let embed = new Discord.RichEmbed()
-		    				.setColor(embedBorderColor)
+		    				.setColor(embedBorderErrorColor)
 		    				.setTitle('Error')
 		    				.setDescription(e.error)
+		    			if (e.file) {
+		    				embed.attachFile(Buffer.from(e.file, 'base64'))
+		    			}
 		    			msgLoading.edit("", embed)
 		    		} else {
 		    			msgLoading.edit('Grab: ' + e)

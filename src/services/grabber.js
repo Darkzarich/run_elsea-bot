@@ -28,7 +28,7 @@ const initDriver = () => {
 
 function errorLogWrapper(e, debug=true) {
 	if (debug == true) {
-		return e;
+		return { error: e };
 	} else {
 		return { error: 'No event is going at the present time, don\'t use "curevent"' }
 	}
@@ -100,7 +100,9 @@ const grab = (driver, command) => {
 			            	reject(errorLogWrapper(e))	
 			            	});;
 	            		}).catch(e => {
-	            			reject(errorLogWrapper(e))
+	            			driver.takeScreenshot().then( data => {
+	            				reject( {...errorLogWrapper(e), ...{file: data} } )
+	            			})
 	            		})
 	            	});	
 	            }).catch(e => {
