@@ -38,4 +38,4 @@ client.on('message', msg => {
 	}
 })
 
-client.login(token.TOKEN)
+client.login(token)
